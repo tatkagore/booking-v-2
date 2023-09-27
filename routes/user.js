@@ -1,24 +1,53 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
+const { Sequelize, DataTypes } = require("sequelize");
+const config = require("../config/config.json")["development"];
+const sequelize = new Sequelize(
+  config.database,
+  config.username,
+  config.password,
+  {
+    host: config.host,
+    dialect: config.dialect,
+  }
+);
+const { User } = require("../db.js");
 
 /* GET User */
-router.get('/', function(req, res, next) {
-    res.json({ message: "Hello, get User!" });
+router.get("/", async (req, res, next) => {
+    // Retrieve all users from the database
+    const users = await User.findAll();
+    res.json(users);
 });
 
 /* Post User */
-router.post('/', function(req, res, next) {
-    res.json({ message: "Hello, post User!" });
+router.post("/", async (req, res, next) => {
+    const user = await User.create({
+    role: "Guest",
+    firstName: "Tanya",
+    lastName: "Simmer",
+    email: "tanya@gmail.com",
+    phoneNumber: "555-555",
+    password: "password",
+});
+    res.json({ message: user});
 });
 
 /* Put User. */
-router.put('/', function(req, res, next) {
-    res.json({ message: "Hello, put User!" });
+router.put('/', async (req, res, next) => {
+    const user = await User.findByPk(1);
+    user.firstName = "Thomas"
+    user.save()
+    res.json({ message: "Hello, put Room!" });
 });
 
+
 /* Delete User */
-router.delete('/', function(req, res, next) {
-    res.json({ message: "Hello, delete User!" });
+
+router.delete("/", async  (req, res, next) => {
+    const user = await User.findByPk(1);
+    await user.destroy();
+    res.json({ message: "Hello, delete Reservation!" });
 });
 
 module.exports = router;

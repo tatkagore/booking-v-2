@@ -1,24 +1,45 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
-/* GET User */
-router.get('/', function(req, res, next) {
-    res.json({ message: "Hello, get Spot!" });
+const { Sequelize, DataTypes } = require("sequelize");
+const config = require("../config/config.json")["development"];
+const sequelize = new Sequelize(
+    config.database,
+    config.username,
+    config.password,
+    {
+    host: config.host,
+    dialect: config.dialect,
+    }
+);
+const { Spot } = require("../db.js");
+
+/* GET Spot */
+router.get("/", async (req, res, next) => {
+    // Retrieve all spots from the database
+    const spots = await Spot.findAll();
+    res.json(spots);
+});
+/* Post Spot */
+router.post("/", async (req, res, next) => {
+    const spot = await Spot.create({
+    name: "Rooftop"
+    });
+    res.json({ message: spot });
 });
 
-/* Post User */
-router.post('/', function(req, res, next) {
-    res.json({ message: "Hello, post Spot!" });
+/* Put Spot. */
+router.put('/', async (req, res, next) => {
+    const spot = await Spot.findByPk(1)
+    spot.name = "seaview"
+    spot.save()
+    res.json({ message: "Hello, put Room!" });
 });
 
-/* Put User. */
-router.put('/', function(req, res, next) {
-    res.json({ message: "Hello, put Spot!" });
+/* Delete Spot */
+router.delete("/", async  (req, res, next) => {
+    const spot = await Spot.findByPk(1);
+    await spot.destroy();
+    res.json({ message: "Hello, delete Reservation!" });
 });
-
-/* Delete User */
-router.delete('/', function(req, res, next) {
-    res.json({ message: "Hello, delete Spot!" });
-});
-
 module.exports = router;

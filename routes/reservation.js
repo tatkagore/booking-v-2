@@ -1,19 +1,32 @@
 var express = require("express");
 var router = express.Router();
-const Reservation = require("../models/reservation");
+
+const { Sequelize, DataTypes } = require("sequelize");
+const config = require("../config/config.json")["development"];
+const sequelize = new Sequelize(
+  config.database,
+  config.username,
+  config.password,
+  {
+    host: config.host,
+    dialect: config.dialect,
+  }
+);
+const { Reservation } = require("../db.js");
 
 /* GET Reservation */
-router.get("/", function (req, res, next) {
-    res.json({ message: "Hello, get Reservation!" });
+router.get("/", async (req, res, next) => {
+    const reservation = await Reservation.findAll();
+    res.json({ message: reservation });
 });
 
 /* Post Reservation */
 router.post("/", async (req, res, next) => {
-    const reservation = await Reservation.create({
-    date: "12",
+const reservation = await Reservation.create({
+    date: Date.now(),
     name: "Tanya",
     note: "Good",
-    status: "1",
+    status: 1,
     userId: 1,
     spotId: 1,
     roomId: 1,
@@ -23,12 +36,17 @@ router.post("/", async (req, res, next) => {
 });
 
 /* Put Reservation. */
-router.put("/", function (req, res, next) {
-    res.json({ message: "Hello, put Reservation!" });
+router.put("/", async (req, res, next) => {
+  const reservation = await Reservation.findByPk(1);
+  reservation.note = "sunset";
+  reservation.save();
+  res.json({ message: "Hello, put Reservation!" });
 });
 
 /* Delete Reservation */
-router.delete("/", function (req, res, next) {
+router.delete("/", async  (req, res, next) => {
+    const reservation = await Reservation.findByPk(3);
+    await reservation.destroy();
     res.json({ message: "Hello, delete Reservation!" });
 });
 
