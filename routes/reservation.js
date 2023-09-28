@@ -1,53 +1,57 @@
-var express = require("express");
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const { Sequelize, DataTypes } = require('sequelize');
+const config = require('../config/config.json')['development'];
 
-const { Sequelize, DataTypes } = require("sequelize");
-const config = require("../config/config.json")["development"];
-const sequelize = new Sequelize(
-  config.database,
-  config.username,
-  config.password,
-  {
+const sequelize = new Sequelize(config.database, config.username, config.password, {
     host: config.host,
-    dialect: config.dialect,
-  }
+    dialect: config.dialect
+  });
+const Reservation = require('../models/reservation')(
+    sequelize, DataTypes
 );
-const { Reservation } = require("../db.js");
 
-/* GET Reservation */
-router.get("/", async (req, res, next) => {
-    const reservation = await Reservation.findAll();
-    res.json({ message: reservation });
+/* GET */
+router.get('/', async (req, res, next) => {
+    try {
+        const reservations = await Reservation.findAll();
+        res.json({ reservations });
+    } catch (error) {
+        next(error);
+    }
+//   res.json({ message: "Hello, get reservation!" });
 });
 
-/* Post Reservation */
-router.post("/", async (req, res, next) => {
-const reservation = await Reservation.create({
-    date: Date.now(),
-    name: "Tanya",
-    note: "Good",
-    status: 1,
-    userId: 1,
-    spotId: 1,
-    roomId: 1,
+/* POST */
+router.post('/', async (req, res, next) => {
+    const reservation = await Reservation.create({
+        date: Date.now(),
+        name: 'Ms Sunshine',
+        // numberOfGuests: 2,
+        note: 'rooftop please',
+        status: 1,
+        userId: 2,
+        spotId: 3,
+        roomId: 4
+    });
+  res.json({ reservation });
 });
 
-    res.json({ message: reservation });
+/* PUT */
+router.put('/', async function (req, res, next) {
+    const id = 1;
+    const reservation = await Reservation.findByPk(id);
+    reservation.note = 'sunset view please';
+    await reservation.save();
+    res.json({ reservation });
 });
 
-/* Put Reservation. */
-router.put("/", async (req, res, next) => {
-  const reservation = await Reservation.findByPk(1);
-  reservation.note = "sunset";
-  reservation.save();
-  res.json({ message: "Hello, put Reservation!" });
-});
-
-/* Delete Reservation */
-router.delete("/", async  (req, res, next) => {
-    const reservation = await Reservation.findByPk(3);
+/* DELETE */
+router.delete('/', async function(req, res, next) {
+    const id = 4;
+    const reservation = await Reservation.findByPk(id);
     await reservation.destroy();
-    res.json({ message: "Hello, delete Reservation!" });
+    res.json({ reservation });
 });
 
 module.exports = router;
