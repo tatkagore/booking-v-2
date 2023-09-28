@@ -24,11 +24,11 @@ router.post('/signup', async (req, res) => {
 const SECRET_KEY = 'secretkey23456'; // A remplacer par une clé secrète
 
 router.post('/signin', async (req, res) => {
-  const user = await User.findOne({
+const user = await User.findOne({
     where: {
-      email: req.body.email,
+        email: req.body.email,
     },
-  });
+});
 
     if (!user) return res.status(400).json({message: `Nom d'utilisateur ou mot de passe incorrect`});
 
@@ -36,7 +36,9 @@ router.post('/signin', async (req, res) => {
     if (!validPassword) return res.status(400).json({message: `Nom d'utilisateur ou mot de passe incorrect`});
 
     const payload = {
-        email: req.body.email
+        email: req.body.email,
+        id: user.id
+
     // Vous pouvez ajouter d'autres propriétés ici
     };
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '1h' });

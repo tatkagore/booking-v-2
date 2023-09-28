@@ -1,22 +1,27 @@
 const request = require('supertest');
 const app = require('../app');
 
-describe('GET /api/reservations', () => {
+// TEST GET RESERVATION
+
+describe('GET /api/reservation', () => {
 it('should return a 401 error', async () => {
     const res = await request(app)
-    .get('/api/reservations')
+    .get('/api/reservation')
     .expect('Content-Type', /json/)
     .expect(401);
 });
 });
 
-
-describe('POST /api/reservations', () => {
-    it('should return a 401 error', async () => {
-        const res = await request(app)
-        .get('/api/reservations')
+// TEST POST SIGNIN
+describe('POST /auth/signin', () => {
+    it('should return a signin', async () => {
+    const res = await request(app)
+        .post('/auth/signin')
         .expect('Content-Type', /json/)
-        .expect(401);
+        .send({
+            email: 'email@bella',
+            password: 'password'
+        })
+        .expect(200);
     });
-    });
-    
+}); 

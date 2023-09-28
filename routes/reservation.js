@@ -6,7 +6,7 @@ const config = require('../config/config.json')['development'];
 const sequelize = new Sequelize(config.database, config.username, config.password, {
     host: config.host,
     dialect: config.dialect
-  });
+});
 const Reservation = require('../models/reservation')(
     sequelize, DataTypes
 );
@@ -34,7 +34,7 @@ router.post('/', async (req, res, next) => {
         spotId: 3,
         roomId: 4
     });
-  res.json({ reservation });
+res.json({ reservation });
 });
 
 /* PUT */
