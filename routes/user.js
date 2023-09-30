@@ -2,6 +2,8 @@ var express = require("express");
 var router = express.Router();
 const { Sequelize, DataTypes } = require("sequelize");
 const config = require("../config/config.json")["development"];
+const { User } = require("../db.js");
+const { isAdmin } = require("../middlewares.js");
 const sequelize = new Sequelize(
   config.database,
   config.username,
@@ -11,14 +13,25 @@ const sequelize = new Sequelize(
     dialect: config.dialect,
   }
 );
-const { User } = require("../db.js");
+
+// *** GET Users only for ADMIN ***
+router.get("/", isAdmin, async (req, res, next) => {
+  try {
+    // Retrieve all users from the database
+    const users = await User.findAll();
+    res.json(users);
+  } catch (error) {
+    // Handle any errors that occur while retrieving users
+    next(error);
+  }
+});
 
 /* GET Users */
-router.get("/", async (req, res, next) => {
-  // Retrieve all users from the database
-  const users = await User.findAll();
-  res.json(users);
-});
+// router.get("/", async (req, res, next) => {
+//   // Retrieve all users from the database
+//   const users = await User.findAll();
+//   res.json(users);
+// });
 
 /* GET One User */
 router.get("/currentUser", async (req, res, next) => {
