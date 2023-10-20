@@ -12,32 +12,58 @@ const { Room } = require("../db.js");
 
 /* GET Room */
 router.get("/", async (req, res, next) => {
-    const room = await Room.findAll();
-    res.json({ message: room});
+    const rooms = await Room.findAll();
+    res.json({ rooms });
 });
+
 
 /* Post Room */
 router.post('/', async (req, res, next) => {
-    const room = await Room.create({
-        name: "Rooftop"
-    })
-    res.json({ message: room });
+    const { name } = req.body;
+
+    if (!name) {
+        return res.status(400).json({ error: "Room name is required." });
+    }
+
+    const room = await Room.create({ name });
+    res.json({ room });
 });
 
+
 /* Put Room. */
-router.put('/', async (req, res, next) => {
-    const room = await Room.findByPk(1)
-    room.name = "4places"
-    room.save()
-    res.json({ message: "Hello, put Room!" });
+router.put('/:roomId', async (req, res, next) => {
+    const { roomId } = req.params;
+    const { name } = req.body;
+
+    if (!name) {
+        return res.status(400).json({ error: "Room name is required." });
+    }
+
+    const room = await Room.findByPk(roomId);
+
+    if (!room) {
+        return res.status(404).json({ error: "Room not found." });
+    }
+
+    room.name = name;
+    await room.save();
+    res.json({ room });
 });
+
 
 
 /* Delete Room */
-router.delete("/", async  (req, res, next) => {
-    const room = await Room.findByPk(1);
+router.delete('/:roomId', async (req, res, next) => {
+    const { roomId } = req.params;
+    const room = await Room.findByPk(roomId);
+
+    if (!room) {
+        return res.status(404).json({ error: "Room not found." });
+    }
+
     await room.destroy();
-    res.json({ message: "Hello, delete Reservation!" });
+    res.json({ message: "Room deleted." });
 });
+
 
 module.exports = router;
