@@ -26,10 +26,10 @@
 - scheme drawio
 
 ### API Endpoints 📲
-- GET /restaurants: Retrieve the list of restaurants
-- POST /restaurants: Create a new restaurant
-- PUT /restaurants/: Modify an existing restaurant
-- DELETE /restaurants/: Delete a restaurant
+- GET /reservation: Retrieve the list of reservations
+- POST /reservation: Create a new reservation
+- PUT /reservation/: Modify an existing reservation
+- DELETE /reservation/: Delete a reservation
 
 ### Database scheme 🎯
 - ![Database scheme](scheme.png?raw=true "Database scheme")
