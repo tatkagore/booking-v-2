@@ -23,12 +23,11 @@ const verifyJWT = (req, res, next) => {
 };
 // Middleware function to check if the user has the "admin" role
 const isAdmin = async (req, res, next) => {
-  
-  const user = await User.findOne({ 
+  const user = await User.findOne({
     where: {
       id: req.user.id,
     },
-  });  // Check if the user has the "admin" role
+  }); // Check if the user has the "admin" role
   if (user && user.role === "admin") {
     // User has admin role, allow access to the route
     next();
@@ -43,4 +42,3 @@ module.exports = {
   isAdmin,
   verifyJWT,
 };
-

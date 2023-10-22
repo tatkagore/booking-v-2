@@ -11,7 +11,7 @@ const sequelize = new Sequelize(
   {
     host: config.host,
     dialect: config.dialect,
-  }
+  },
 );
 
 // *** GET Users only for ADMIN ***

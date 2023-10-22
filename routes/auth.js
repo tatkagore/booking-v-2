@@ -7,7 +7,6 @@ const jwt = require("jsonwebtoken");
 // Regular expression for email validation
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-
 router.post("/signup", async (req, res) => {
   try {
     // Check if the email already exists in the database
@@ -22,7 +21,7 @@ router.post("/signup", async (req, res) => {
     // Check if the provided email matches the email regex
     if (!emailRegex.test(req.body.email)) {
       return res.status(400).json({ error: "Invalid email format" });
-  }
+    }
 
     // if req.body.password is empty, add "Password field is empty"
     const salt = await bcrypt.genSalt(10);

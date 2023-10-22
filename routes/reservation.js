@@ -10,7 +10,7 @@ const sequelize = new Sequelize(
   {
     host: config.host,
     dialect: config.dialect,
-  }
+  },
 );
 
 const Reservation = require("../models/reservation")(sequelize, DataTypes);
@@ -40,7 +40,9 @@ router.post("/", async (req, res, next) => {
 
     if (existingReservation) {
       // Spot is already reserved for the specified date
-      return res.status(400).json({ error: "Spot is already reserved for this date and time." });
+      return res
+        .status(400)
+        .json({ error: "Spot is already reserved for this date and time." });
     }
 
     // If no existing reservation, create the new reservation
@@ -57,7 +59,9 @@ router.post("/", async (req, res, next) => {
     res.json({ reservation });
   } catch (error) {
     console.error(error); // Log the error for debugging
-    res.status(500).json({ error: 'An error occurred while creating the reservation.' });
+    res
+      .status(500)
+      .json({ error: "An error occurred while creating the reservation." });
     next(error);
   }
 });
@@ -66,42 +70,44 @@ router.post("/", async (req, res, next) => {
 router.put("/:id", async function (req, res, next) {
   const id = req.params.id;
   const { note } = req.body;
-  
+
   try {
     const reservation = await Reservation.findByPk(id);
     if (!reservation) {
       return res.status(404).json({ error: "Reservation not found." });
     }
-    
+
     reservation.note = note;
     await reservation.save();
     res.json({ reservation });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'An error occurred while updating the reservation.' });
+    res
+      .status(500)
+      .json({ error: "An error occurred while updating the reservation." });
     next(error);
   }
 });
 
 /* DELETE Reservation */
-router.delete('/:reservationId', (req, res, next) => {
+router.delete("/:reservationId", (req, res, next) => {
   const reservationId = req.params.reservationId;
 
   Reservation.destroy({
-      where: { id: reservationId }
+    where: { id: reservationId },
   })
-  .then((rowsDeleted) => {
+    .then((rowsDeleted) => {
       if (rowsDeleted === 0) {
-          return res.status(404).json({ message: "Reservation not found." });
+        return res.status(404).json({ message: "Reservation not found." });
       }
       res.status(200).json({ message: "Reservation deleted." });
-  })
-  .catch(error => {
+    })
+    .catch((error) => {
       console.error(error);
-      res.status(500).json({ error: 'An error occurred while deleting the reservation.' });
-  });
+      res
+        .status(500)
+        .json({ error: "An error occurred while deleting the reservation." });
+    });
 });
-
-
 
 module.exports = router;
