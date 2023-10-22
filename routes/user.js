@@ -75,14 +75,9 @@ router.post("/", async (req, res, next) => {
       return res.status(400).json({ error: "Email already exists" });
     }
 
-    const user = await User.create({
-      role: "Guest",
-      firstName: "Tanya",
-      lastName: "Simmer",
-      email: "tanya@gmail.com",
-      phoneNumber: "555-555",
-      password: "password",
-    });
+   // Create a new user with data from the request body
+   const user = await User.create(req.body);
+
     res.json({ message: user });
   } catch (error) {
     // Handle any errors that occur during user creation
@@ -90,20 +85,49 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-/* Put User. */
-router.put("/", async (req, res, next) => {
-  const user = await User.findByPk(1);
-  user.firstName = "Thomas";
-  user.save();
-  res.json({ message: "Hello, put Room!" });
+/* PUT User */
+router.put("/:userId", async (req, res, next) => {
+  try {
+    const userId = req.params.userId; // Get the user ID from the URL
+    const user = await User.findByPk(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Update user data with the information provided in the request body
+    user.firstName = req.body.firstName;
+    user.lastName = req.body.lastName;
+    user.email = req.body.email;
+    user.phoneNumber = req.body.phoneNumber;
+    user.password = req.body.password;
+
+    await user.save();
+
+    res.json({ message: "User updated", user });
+  } catch (error) {
+    // Handle any errors that occur during the update
+    next(error);
+  }
 });
 
-/* Delete User */
+/* DELETE User */
+router.delete("/:userId", async (req, res, next) => {
+  try {
+    const userId = req.params.userId; // Get the user ID from the URL
+    const user = await User.findByPk(userId);
 
-router.delete("/", async (req, res, next) => {
-  const user = await User.findByPk(1);
-  await user.destroy();
-  res.json({ message: "Hello, delete Reservation!" });
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    await user.destroy();
+
+    res.json({ message: "User deleted" });
+  } catch (error) {
+    // Handle any errors that occur during the delete
+    next(error);
+  }
 });
 
 module.exports = router;
