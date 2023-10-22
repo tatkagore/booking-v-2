@@ -37,6 +37,13 @@
 ### Postman screenshots 👩🏻‍🚀
  - Reservation - Get
  ![Reservation-get](reservation-get.png?raw=true "Reservation-get")
+ - Reservation - Post
+ ![Reservation-post](reservation-post.png?raw=true "Reservation-post")
+- Reservation - Put 
+ ![Reservation-put](reservation-put.png?raw=true "Reservation-put")
+ - Reservation - Delete 
+ ![Reservation-del](reservation-del.png?raw=true "Reservation-del")
+
  - Signin - Post
 ![Signin-post](signin-post.png?raw=true "Signin-post")
 - SignUp - Post
