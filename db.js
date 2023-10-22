@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes } = require("sequelize");
 
-const config = require("./config/config.json")["development"];
+const config = require("config");
 
 const sequelize = new Sequelize(
   config.database,
@@ -18,6 +18,7 @@ const Spot = require("./models/spot")(sequelize, DataTypes);
 const User = require("./models/user")(sequelize, DataTypes);
 
 module.exports = {
+  sequelize,
   Reservation,
   Room,
   Spot,

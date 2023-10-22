@@ -26,6 +26,28 @@
 - terminal
 - scheme drawio
 
+### How to use
+
+Requirements:
+ - Postgres
+
+To run tests:
+ - Connect to postgres by running `psql postgres`
+ - Create a user by running : `create user tatianasimmer;`
+ - Create a database with an owner by running `create database database_test with owner=tatianasimmer;`
+ - Quit postgres by ctrl + d
+ - Run migrations on the database by running: `npx sequelize db:migrate --env test`
+ - Add objects in db necessary for tests by running: `NODE_ENV=test node seeders/index.js`
+ - Run tests by running: `npm test`
+
+To run development server:
+ - Connect to postgres by running `psql postgres`
+ - Create a user by running : `create user tatianasimmer;`
+ - Create a database with an owner by running `create database database_development with owner=tatianasimmer;`
+ - Quit postgres by ctrl + d
+ - Run migrations on the database by running: `npx sequelize db:migrate`
+ - Run server by running: `npm run start`
+
 ### API Endpoints 📲
 
 - GET /reservation: Retrieve the list of reservations

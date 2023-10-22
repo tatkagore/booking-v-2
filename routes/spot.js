@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 
 const { Sequelize, DataTypes } = require("sequelize");
-const config = require("../config/config.json")["development"];
+const config = require("config");
 const sequelize = new Sequelize(
   config.database,
   config.username,

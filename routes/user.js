@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const { Sequelize, DataTypes } = require("sequelize");
-const config = require("../config/config.json")["development"];
+const config = require("config");
 const { User } = require("../db.js");
 const { isAdmin } = require("../middlewares.js");
 const sequelize = new Sequelize(
@@ -34,7 +34,7 @@ router.get("/", isAdmin, async (req, res, next) => {
 // });
 
 /* GET One User */
-router.get("/currentUser", async (req, res, next) => {
+router.get("/me", async (req, res, next) => {
   try {
     // Get the user ID
     const userId = req.user.id;
@@ -55,12 +55,6 @@ router.get("/currentUser", async (req, res, next) => {
   }
 });
 
-/* GET user */
-router.get("/me", (req, res, next) => {
-  User.findOne({ where: { id: req.body.userId } }).then((users) => {
-    res.status(200).send(users);
-  });
-});
 
 /* Post User */
 router.post("/", async (req, res, next) => {

@@ -1,16 +1,18 @@
 const request = require("supertest");
 const app = require("../app");
 
-describe("GET /api/user/me without token", () => {
+// TEST GET RESERVATION
+
+describe("GET /api/reservation unauthenticated user", () => {
   it("should return a 401 error", async () => {
     const res = await request(app)
-      .get("/api/user/me")
+      .get("/api/reservation")
       .expect("Content-Type", /json/)
       .expect(401);
   });
 });
 
-describe("GET /api/user/me with token", () => {
+describe("GET /api/reservation authenticated user", () => {
   let token;
   beforeEach(async () => {
     const res = await request(app)
@@ -26,7 +28,7 @@ describe("GET /api/user/me with token", () => {
 
   it("should return a success", async () => {
     const res = await request(app)
-      .get("/api/user/me")
+      .get("/api/reservation")
       .set({ Authorization: token })
       .expect("Content-Type", /json/)
       .expect(200);
