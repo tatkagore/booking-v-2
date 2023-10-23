@@ -14,7 +14,7 @@
 - Security: We prioritized security, using middleware, input validation, authentication, and authorization. We securely managed sensitive data like API keys and passwords.
 
 ### Dictionary: 
- - Node.js:  is an open-source, server-side runtime environment that allows developers to run JavaScript code outside the browser. 
+ - `Node.js:``  is an open-source, server-side runtime environment that allows developers to run JavaScript code outside the browser. 
  - Express: is a minimal and flexible Node.js web application framework that provides a set of features for building web and mobile applications. It simplifies the process of building robust APIs and web applications, making it a popular choice for creating backends.
  - PostgreSQL: is a powerful, open-source relational database management system (RDBMS). It's known for its robustness, extensibility, and compliance with SQL standards. It's commonly used as a database for web applications and offers features for data integrity, scalability, and performance.
  - Bcrypt: is a widely-used cryptographic hashing function. In the context of web development, bcrypt is commonly used to securely hash and store passwords in databases. It adds a layer of security by making it computationally expensive to crack hashed passwords.
