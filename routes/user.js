@@ -70,7 +70,7 @@ router.post("/", async (req, res, next) => {
     }
 
    // Create a new user with data from the request body
-   const user = await User.create(req.body);
+  const user = await User.create(req.body);
 
     res.json({ message: user });
   } catch (error) {
