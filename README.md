@@ -13,6 +13,20 @@
 - Error Handling: Ensuring meaningful error responses was crucial. We implemented error handling middleware to catch and log errors, enhancing user experience.
 - Security: We prioritized security, using middleware, input validation, authentication, and authorization. We securely managed sensitive data like API keys and passwords.
 
+### Dictionary: 
+ - Node.js:  is an open-source, server-side runtime environment that allows developers to run JavaScript code outside the browser. 
+ - Express: is a minimal and flexible Node.js web application framework that provides a set of features for building web and mobile applications. It simplifies the process of building robust APIs and web applications, making it a popular choice for creating backends.
+ - PostgreSQL: is a powerful, open-source relational database management system (RDBMS). It's known for its robustness, extensibility, and compliance with SQL standards. It's commonly used as a database for web applications and offers features for data integrity, scalability, and performance.
+ - Bcrypt: is a widely-used cryptographic hashing function. In the context of web development, bcrypt is commonly used to securely hash and store passwords in databases. It adds a layer of security by making it computationally expensive to crack hashed passwords.
+ - Seeding: is a process in which an initial set of data is provided to a database when it is being installed. It is especially useful when we want to populate the database with data we want to develop in future. So our goal is to “feed” the database with dummy data on its initialization.
+ - ORM (Object-Relational Mapping): is a programming technique that allows you to interact with a relational database using an object-oriented paradigm. In this project, Sequelize is an example of an ORM that simplifies database interactions.
+- Sequelize: is (ORM) library for JavaScript and Node.js, specifically designed for working with relational databases. It provides an abstraction layer that allows developers to interact with databases using JavaScript objects and methods, rather than writing raw SQL queries. Sequelize supports multiple database management systems, including PostgreSQL, MySQL, SQLite, and Microsoft SQL Server.
+- Token-based Authentication: is a method where a token is provided to authenticated users, which they use for subsequent requests. In this project, we use JSON Web Tokens (JWT) for authentication.
+- JWT stands for "JSON Web Token." It is a compact, self-contained, and secure way of representing information between two parties, typically the client and the server. JWTs are commonly used for authentication and data exchange in web applications and APIs. 
+
+
+
+
 ### Used tools 🛠️
 
 - Node.js
