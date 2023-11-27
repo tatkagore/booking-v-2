@@ -28,7 +28,7 @@ const isAdmin = async (req, res, next) => {
       id: req.user.id,
     },
   }); // Check if the user has the "admin" role
-  if (user && user.role === "admin") {
+  if (user && user.isAdmin) {
     // User has admin role, allow access to the route
     next();
   } else {

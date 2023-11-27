@@ -9,7 +9,7 @@ const SECRET_KEY = "secretkey23456";
 // Regular expression for email validation
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-router.post("/signup", async (req, res) => {
+router.post("/signup", async (req, res, next) => {
   try {
     // Check if the email already exists in the database
     const existingUser = await User.findOne({
@@ -25,9 +25,11 @@ router.post("/signup", async (req, res) => {
       return res.status(400).json({ error: "Invalid email format" });
     }
 
-    const { role, firstName, lastName, email, phoneNumber } = req.body;
+    const { firstName, lastName, email, phoneNumber, password } = req.body;
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
     const user = {
-      role,
+      isAdmin: false,
       firstName,
       lastName,
       email,
@@ -35,7 +37,14 @@ router.post("/signup", async (req, res) => {
       password: hashedPassword,
     };
     await User.create(user);
-    res.json({ message: "User created", user });
+
+    const payload = {
+      email: user.email,
+      id: user.id,
+    };
+    const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "1h" });
+    res.json({ jwt: token, status: 201 });
+    
   } catch (error) {
     next(error);
   }

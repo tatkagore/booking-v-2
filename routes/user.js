@@ -94,7 +94,13 @@ router.put("/:userId", async (req, res, next) => {
     user.lastName = req.body.lastName;
     user.email = req.body.email;
     user.phoneNumber = req.body.phoneNumber;
-    user.password = req.body.password;
+
+    if (req.body.password) {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(req.body.password, salt);
+      
+      user.password = hashedPassword;  
+    }
 
     await user.save();
 
