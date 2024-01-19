@@ -14,7 +14,7 @@ const sequelize = new Sequelize(
 );
 const { Spot } = require("../db.js");
 
-/* GET Spots */
+/* GET Spots only for Admin*/
 router.get("/", isAdmin, async (req, res, next) => {
   try {
     const spots = await Spot.findAll();
@@ -27,7 +27,7 @@ router.get("/", isAdmin, async (req, res, next) => {
 });
 
 /* POST Spot */
-router.post("/", async (req, res, next) => {
+router.post("/", isAdmin, async (req, res, next) => {
   try {
     const { name } = req.body;
 
@@ -48,7 +48,7 @@ router.post("/", async (req, res, next) => {
 });
 
 /* PUT Spot */
-router.put("/:spotId", async (req, res, next) => {
+router.put("/:spotId", isAdmin, async (req, res, next) => {
   try {
     const { spotId } = req.params;
     const { name } = req.body;
@@ -75,7 +75,7 @@ router.put("/:spotId", async (req, res, next) => {
 });
 
 /* DELETE Spot */
-router.delete("/:spotId", async (req, res, next) => {
+router.delete("/:spotId", isAdmin, async (req, res, next) => {
   try {
     const { spotId } = req.params;
     const spot = await Spot.findByPk(spotId);

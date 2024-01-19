@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Sequelize, DataTypes } = require("sequelize");
 const config = require("config");
-
+const { isAdmin } = require("../middlewares.js");
 const sequelize = new Sequelize(
   config.database,
   config.username,
@@ -16,7 +16,7 @@ const sequelize = new Sequelize(
 const Reservation = require("../models/reservation")(sequelize, DataTypes);
 
 /* GET All Reservations */
-router.get("/", async (req, res, next) => {
+router.get("/", isAdmin, async (req, res, next) => {
   try {
     const reservations = await Reservation.findAll();
     res.json({ reservations });

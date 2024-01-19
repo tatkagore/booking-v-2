@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-
+const { isAdmin } = require("../middlewares.js");
 const { Sequelize, DataTypes } = require("sequelize");
 const config = require("config");
 const sequelize = new Sequelize(
@@ -15,13 +15,13 @@ const sequelize = new Sequelize(
 const { Room } = require("../db.js");
 
 /* GET Room */
-router.get("/", async (req, res, next) => {
+router.get("/", isAdmin, async (req, res, next) => {
   const rooms = await Room.findAll();
   res.json({ rooms });
 });
 
 /* Post Room */
-router.post("/", async (req, res, next) => {
+router.post("/", isAdmin, async (req, res, next) => {
   const { name } = req.body;
 
   if (!name) {
@@ -33,7 +33,7 @@ router.post("/", async (req, res, next) => {
 });
 
 /* Put Room. */
-router.put("/:roomId", async (req, res, next) => {
+router.put("/:roomId", isAdmin, async (req, res, next) => {
   const { roomId } = req.params;
   const { name } = req.body;
 
@@ -53,7 +53,7 @@ router.put("/:roomId", async (req, res, next) => {
 });
 
 /* Delete Room */
-router.delete("/:roomId", async (req, res, next) => {
+router.delete("/:roomId", isAdmin, async (req, res, next) => {
   const { roomId } = req.params;
   const room = await Room.findByPk(roomId);
 
