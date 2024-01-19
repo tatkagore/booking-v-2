@@ -90,7 +90,7 @@ router.put("/:id", async function (req, res, next) {
 });
 
 /* DELETE Reservation */
-router.delete("/:reservationId", (req, res, next) => {
+router.delete("/:reservationId", (req, res) => {
   const reservationId = req.params.reservationId;
 
   Reservation.destroy({
