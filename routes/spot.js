@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-
+const { isAdmin } = require("../middlewares.js");
 const { Sequelize, DataTypes } = require("sequelize");
 const config = require("config");
 const sequelize = new Sequelize(
@@ -15,7 +15,7 @@ const sequelize = new Sequelize(
 const { Spot } = require("../db.js");
 
 /* GET Spots */
-router.get("/", async (req, res, next) => {
+router.get("/", isAdmin, async (req, res, next) => {
   try {
     const spots = await Spot.findAll();
     res.json(spots);
