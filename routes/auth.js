@@ -76,41 +76,40 @@ router.post("/signin", async (req, res) => {
   res.json({ jwt: token, status: 201 });
 });
 
-// Route pour réinitialiser le mot de passe
+// Route for resetting the password
 router.post('/reset-password', async (req, res) => {
   try {
     const { email, newPassword } = req.body;
 
-       //Validation de base
+       // Basic validation
       if (!email || !newPassword) {
         return res.status(400).json({ error: 'Email et nouveau mot de passe sont requis' });
       }
 
-    // Recherche de l'utilisateur par email
+    // Search for the user by email
     const user = await User.findOne({ where: { email: email } });
 
     if (!user) {
       return res.status(404).json({ error: 'Utilisateur non trouvé' });
     }
 
-    // Hachage du nouveau mot de passe
+    // Hash the new password
     const salt = await bcrypt.genSalt(10);
     console.log('Salt generated successfully');
     const hashedPassword = await bcrypt.hash(newPassword, salt);
     console.log('Password hashed successfully');
 
-    // Mise à jour du mot de passe dans la base de données
+    // Update the password in the database
     console.log('Avant la sauvegarde :', user.password);
     user.password = hashedPassword;
     await user.save();
     console.log('Après la sauvegarde :', user.password);
-  
 
-    // Répondez avec un message de succès
+   // Respond with a success message
     res.json({ message: 'Mot de passe réinitialisé avec succès' });
   } catch (error) {
-    // Gérez les erreurs qui pourraient survenir pendant le processus de réinitialisation
-    console.error(error);
+    // Handle errors that may occur during the reset process
+   console.error(error);
     res.status(500).json({ error: 'Erreur lors de la réinitialisation du mot de passe' });
   }
 });
