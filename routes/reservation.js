@@ -28,12 +28,11 @@ router.get("/", isAdmin, async (req, res, next) => {
 /* POST Create Reservation */
 router.post("/", async (req, res, next) => {
   try {
-    const { spotId, date, name, note, status, userId, roomId } = req.body;
+    const { date, note, userId, numberOfGuests } = req.body;
 
     // Check if there is an existing reservation for the same spot and date
     const existingReservation = await Reservation.findOne({
       where: {
-        spotId,
         date,
       },
     });
@@ -47,13 +46,10 @@ router.post("/", async (req, res, next) => {
 
     // If no existing reservation, create the new reservation
     const reservation = await Reservation.create({
-      spotId,
+      numberOfGuests,
       date,
-      name,
       note,
-      status,
       userId,
-      roomId,
     });
 
     res.json({ reservation });

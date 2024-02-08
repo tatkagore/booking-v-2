@@ -1,5 +1,5 @@
 "use strict";
-const { Model } = require("sequelize");
+const { Model, Sequelize } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Reservation extends Model {
     /**
@@ -14,12 +14,9 @@ module.exports = (sequelize, DataTypes) => {
   Reservation.init(
     {
       date: DataTypes.DATE,
-      name: DataTypes.STRING,
       note: DataTypes.STRING,
-      status: DataTypes.INTEGER,
+      numberOfGuests: DataTypes.INTEGER,
       userId: DataTypes.INTEGER,
-      spotId: DataTypes.INTEGER,
-      roomId: DataTypes.INTEGER,
     },
     {
       sequelize,
