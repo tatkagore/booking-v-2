@@ -25,6 +25,23 @@ router.get("/", isAdmin, async (req, res, next) => {
   }
 });
 
+/* GET All Reservations for current user */
+router.get("/me", async (req, res, next) => {
+  try {
+    // Get the user ID
+    const userId = req.user.id;
+
+    const reservations = await Reservation.findAll({
+      where: {
+        userId: userId
+      },
+    });
+    res.json({ reservations });
+  } catch (error) {
+    next(error);
+  }
+});
+
 /* POST Create Reservation */
 router.post("/", async (req, res, next) => {
   try {
