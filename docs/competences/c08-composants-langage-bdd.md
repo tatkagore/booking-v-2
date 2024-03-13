@@ -15,21 +15,21 @@
 
 | Tâche                                                   | Validée | Validation |
 | ------------------------------------------------------- | :-----: | ---------- |
-| Utilisation d'Express Validator                         |   ❌    |            |
-| Intégration de bcrypt pour le hashage des mots de passe |   ❌    |            |
-| Sanitisation avec Joi                                   |   ❌    |            |
-| Accès aux données restreint par rôle                    |   ❌    |            |
-| Implémentation du champ updatedAt dans les modèles      |   ❌    |            |
-| Utilisation de try/catch pour la gestion d'erreurs      |   ❌    |            |
+| Utilisation d'Express Validator                         |   ⏳    |            |
+| Intégration de bcrypt pour le hashage des mots de passe |   ⏳    |            |
+| Sanitisation avec Joi                                   |   🟠    |            |
+| Accès aux données restreint par rôle                    |   ⏳    |            |
+| Implémentation du champ updatedAt dans les modèles      |   🟠    |            |
+| Utilisation de try/catch pour la gestion d'erreurs      |   ⏳    |            |
 
 ## Logs
 
 | Tâche                                                    | Validée | Validation |
 | -------------------------------------------------------- | :-----: | ---------- |
-| Configuration et utilisation des logs (Morgan + Winston) |   ❌    |            |
+| Configuration et utilisation des logs (Morgan + Winston) |   🟠    |            |
 
 ## Tests
 
 | Tâche                                                  | Validée | Validation |
 | ------------------------------------------------------ | :-----: | ---------- |
-| Développement de tests unitaires pour chaque composant |   ❌    |            |
+| Développement de tests unitaires pour chaque composant |   🟠    |            |
