@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const reservationRouter = require("./reservation");
+const reservationRouter = require("./reservationsRoute");
 const roomRouter = require("./room");
 const spotRouter = require("./spot");
 const userRouter = require("./user");
