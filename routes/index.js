@@ -4,7 +4,7 @@ const router = express.Router();
 const reservationRouter = require("./reservationsRoute");
 const roomRouter = require("./room");
 const spotRouter = require("./spot");
-const userRouter = require("./user");
+const userRouter = require("./userRoute");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
