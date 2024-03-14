@@ -21,8 +21,15 @@
     "sequelize-cli": "^6.6.1"
   },
   "devDependencies": {
+    "eslint": "^8.57.0",
     "jest": "^29.7.0",
     "prettier": "^3.2.5",
     "supertest": "^6.3.3"
+  },
+  "eslintConfig": {
+    "extends": [
+        "react-app",
+        "react-app/jest"
+    ]
   }
 }
