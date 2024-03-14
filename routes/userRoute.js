@@ -3,7 +3,7 @@ var router = express.Router();
 const { Sequelize, DataTypes } = require("sequelize");
 const config = require("config");
 const { User } = require("../db.js");
-const { isAdmin } = require("../middlewares.js");
+const { isAdmin } =  require("../middlewares/middlewares.js");
 const {
   createUser,
   getUsersAsAdmin,

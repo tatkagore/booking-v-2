@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { User } = require("./db.js");
+const { User } = require("../db.js");
 
 const verifyJWT = (req, res, next) => {
   const SECRET_KEY = "secretkey23456"; // A remplacer par la même clé secrète que dans la route signin dans fichier auth.js

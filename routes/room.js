@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const { isAdmin } = require("../middlewares.js");
+const { isAdmin } =  require("../middlewares/middlewares.js");
 const { Sequelize, DataTypes } = require("sequelize");
 const config = require("config");
 const sequelize = new Sequelize(
