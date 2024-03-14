@@ -26,7 +26,7 @@
 
 | Tâche                                                    | Validée | Validation |
 | -------------------------------------------------------- | :-----: | ---------- |
-| Configuration et utilisation des logs (Morgan + Winston) |   🟠    |            |
+| Configuration et utilisation des logs (Morgan + Winston) |   ⏳    |            |
 
 ## Tests
 
