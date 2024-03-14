@@ -18,7 +18,8 @@
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.33.0",
-    "sequelize-cli": "^6.6.1"
+    "sequelize-cli": "^6.6.1",
+    "winston": "^3.12.0"
   },
   "devDependencies": {
     "eslint": "^8.57.0",
@@ -28,8 +29,8 @@
   },
   "eslintConfig": {
     "extends": [
-        "react-app",
-        "react-app/jest"
+      "react-app",
+      "react-app/jest"
     ]
   }
 }
