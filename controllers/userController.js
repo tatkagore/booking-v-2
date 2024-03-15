@@ -27,7 +27,6 @@ exports.getUsersAsAdmin = async (req, res) => {
   try {
     // Retrieve all users from the database
     const users = await User.findAll();
-    res.json(users);
     res.status(201).json(users);
   } catch (error) {
     res.status(400).json({ error: error.message });
