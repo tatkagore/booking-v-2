@@ -1,6 +1,47 @@
-### Restaurant Reservation Project 👩🏻‍🍳
+# Restaurant Reservation Project 👩🏻‍🍳
 
-#### This project focuses on creating a backend system for managing restaurant reservations:
+- [Restaurant Reservation Project 👩🏻‍🍳](#restaurant-reservation-project-)
+  - [How to install:](#how-to-install)
+  - [This project focuses on creating a backend system for managing restaurant reservations:](#this-project-focuses-on-creating-a-backend-system-for-managing-restaurant-reservations)
+    - [Summary of Problems Encountered and Solutions Envisaged 📝](#summary-of-problems-encountered-and-solutions-envisaged-)
+    - [Dictionary:](#dictionary)
+    - [Used tools 🛠️](#used-tools-️)
+    - [How to use](#how-to-use)
+    - [API Endpoints 📲](#api-endpoints-)
+    - [Database scheme 🎯](#database-scheme-)
+    - [Postman screenshots 👩🏻‍🚀](#postman-screenshots-)
+    - [Resources Consulted and Technological Monitoring 👩🏻‍💻](#resources-consulted-and-technological-monitoring-)
+
+## How to install:
+Add your own database information
+```bash
+echo -e "PORT=your_port
+DEV_DB_USER=your_user
+DEV_DB_PASSWORD=your_password
+DEV_DB_NAME=your_db_name
+DEV_DB_HOST=your_host
+
+TEST_DB_USER=your_user
+TEST_DB_PASSWORD=your_password
+TEST_DB_NAME=your_db_name
+TEST_DB_HOST=your_host
+
+PROD_DB_USER=your_user
+PROD_DB_PASSWORD=your_password
+PROD_DB_NAME=your_db_name
+PROD_DB_HOST=your_host
+DB_NAME_PROD=database_production" > ".env"
+```
+
+```bash
+npm install
+npx sequelize-cli db:create 
+npx sequelize db:migrate
+npx sequelize db:seed:all
+npm run start
+```
+
+## This project focuses on creating a backend system for managing restaurant reservations:
 
 - Creation of a backend using Node.js with the Express framework.
 - Use of a PostgreSQL database with the Sequelize ORM to manage data.
