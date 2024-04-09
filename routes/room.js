@@ -1,17 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const { isAdmin } =  require("../middlewares/middlewares.js");
-const { Sequelize, DataTypes } = require("sequelize");
-const config = require("config");
-const sequelize = new Sequelize(
-  config.database,
-  config.username,
-  config.password,
-  {
-    host: config.host,
-    dialect: config.dialect,
-  },
-);
+const { isAdmin } = require("../middlewares/middlewares.js");
 const { Room } = require("../db.js");
 
 /* GET Room */

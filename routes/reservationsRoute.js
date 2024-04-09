@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const { Sequelize, DataTypes } = require("sequelize");
-const config = require("config");
-const { isAdmin } =  require("../middlewares/middlewares.js");
+const config = require("../config/config.js");
+const { isAdmin } = require("../middlewares/middlewares.js");
 const {
   getReservationsAsAdmin,
   getReservationsForMe,
