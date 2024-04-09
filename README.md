@@ -112,6 +112,30 @@ To run development server:
 
 ### Database scheme 🎯
 
+> `Users` and `Reservations` Relationship (One-to-Many):
+> One user can make many reservations.
+- `Ref: Reservations.user_id > Users.id`
+
+
+> `Users` and `Membership` Relationship (One-to-One):
+> Each user has one membership, and each membership is associated with one user
+- `Ref: Membership.user_id - Users.id`
+
+> `Users` and `Orders` Relationship (One-to-Many):
+> One user can place many orders.
+- `Ref: Orders.user_id > Users.id`
+- `Ref: Orders.plate_id > Plates.id`
+
+
+> `OrderItems` and `Plates` (Many-to-One )
+> - Many: Each order can contain multiple items (or plates), so you can have multiple `OrderItems` entries associated with the same order.
+> - One: Each entry in `OrderItems` is linked to one, and only one, `Orders` entry, indicating which specific order the item belongs to.
+> - Many: A specific plate can be ordered multiple times across different orders, so you can have multiple OrderItems entries for the same plate_id.
+> - One: Each entry in OrderItems corresponds to one, and only one, plate in the Plates table, specifying which plate was ordered.
+- `Ref: OrderItems.order_id > Orders.id`
+- `Ref: OrderItems.plate_id > Plates.id`
+
+
 - ![Database scheme](db.png?raw=true  "Database scheme")
 
 ### Postman screenshots 👩🏻‍🚀
