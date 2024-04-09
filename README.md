@@ -16,21 +16,10 @@
 Add your own database information
 ```bash
 echo -e "PORT=your_port
-DEV_DB_USER=your_user
-DEV_DB_PASSWORD=your_password
-DEV_DB_NAME=your_db_name
-DEV_DB_HOST=your_host
-
-TEST_DB_USER=your_user
-TEST_DB_PASSWORD=your_password
-TEST_DB_NAME=your_db_name
-TEST_DB_HOST=your_host
-
-PROD_DB_USER=your_user
-PROD_DB_PASSWORD=your_password
-PROD_DB_NAME=your_db_name
-PROD_DB_HOST=your_host
-DB_NAME_PROD=database_production" > ".env"
+DB_USER=your_user
+DB_PASSWORD=your_password
+DB_NAME=your_db_name
+DB_HOST=your_host
 ```
 
 ```bash

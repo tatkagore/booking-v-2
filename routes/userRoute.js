@@ -1,9 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const { Sequelize, DataTypes } = require("sequelize");
-const config = require("config");
-const { User } = require("../db.js");
-const { isAdmin } =  require("../middlewares/middlewares.js");
+const { isAdmin } = require("../middlewares/middlewares.js");
 const {
   createUser,
   getUsersAsAdmin,
@@ -12,15 +9,6 @@ const {
   updateUserAsAdmin,
   deleteUser,
 } = require("../controllers/userController.js");
-const sequelize = new Sequelize(
-  config.database,
-  config.username,
-  config.password,
-  {
-    host: config.host,
-    dialect: config.dialect,
-  }
-);
 
 // * GET Users only for ADMIN *
 router.get("/", isAdmin, getUsersAsAdmin);

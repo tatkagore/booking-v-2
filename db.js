@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes } = require("sequelize");
 
-const config = require("config");
+const config = require("./config/config.js");
 
 const sequelize = new Sequelize(
   config.database,
@@ -9,7 +9,7 @@ const sequelize = new Sequelize(
   {
     host: config.host,
     dialect: config.dialect,
-  },
+  }
 );
 
 const Reservation = require("./models/reservation")(sequelize, DataTypes);
