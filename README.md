@@ -112,7 +112,7 @@ To run development server:
 
 ### Database scheme 🎯
 
-- ![Database scheme](scheme.png?raw=true "Database scheme")
+- ![Database scheme](db.png?raw=true  "Database scheme")
 
 ### Postman screenshots 👩🏻‍🚀
 
