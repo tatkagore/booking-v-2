@@ -8,6 +8,7 @@
   - [Base de données](#base-de-données)
   - [Tests](#tests)
   - [Documentation API](#documentation-api)
+  - [Liens](#liens)
 
 ## Versions
 
@@ -18,27 +19,27 @@
 
 | Tâche                                                           | Validée | Lien          |
 | --------------------------------------------------------------- | ------- | ------------- |
-| Création des dossiers et fichiers Routes (User, Room, Spot...)  | ⏳       | ./routes      |
-| Création des dossiers et fichiers Modèles (User, Room, Spot...) | ⏳       | ./models      |
-| Mise en place des contrôleurs (User, Room, Spot...)             | ⏳    | ./controllers |
+| Création des dossiers et fichiers Routes (User, Room, Spot...)  | ✅       | ./routes      |
+| Création des dossiers et fichiers Modèles (User, Room, Spot...) | ✅       | ./models      |
+| Mise en place des contrôleurs (User, Room, Spot...)             | ✅    | ./controllers |
 | 🔜 Implémenter les services                                    | 🟠     |               |
 
 ## Sécurité
 
 | Tâche                                                      | Validée | Lien                 |
 | ---------------------------------------------------------- | ------- | -------------------- |
-| Sécurité et Authentification                               | ⏳       | [Sécurité GitHub][3] |
-| Utiliser bcrypt pour le hashage des mots de passe          | ⏳       | [Bcrypt GitHub][2]   |
-| Mettre en place l'authentification avec JWT (jsonwebtoken) | ⏳       | [JWT GitHub][1]      |
+| Sécurité et Authentification                               | ✅       | [Sécurité GitHub][3] |
+| Utiliser bcrypt pour le hashage des mots de passe          | ✅       | [Bcrypt GitHub][2]   |
+| Mettre en place l'authentification avec JWT (jsonwebtoken) | ✅       | [JWT GitHub][1]      |
 
 ## Validation des données
 
 | Tâche                                                           | Validée | Lien |
 | --------------------------------------------------------------- | ------- | ---- |
-| 🔜 Intégrer express-validator pour la validation des données   | ⏳      |      |
+| 🔜 Intégrer express-validator pour la validation des données   |    ⏳   |      |
 | 🔜 Nettoyer les données entrantes pour prévenir les injections | 🟠      |      |
-| Établir une nomenclature cohérente pour le code                 | 🟠      |      |
-| Commenter et expliquer les segments de code complexes           | 🟠      |      |
+| Établir une nomenclature cohérente pour le code                 |  ✅      |      |
+| Commenter et expliquer les segments de code complexes           |  ✅      |      |
 
 ## Base de données
 
