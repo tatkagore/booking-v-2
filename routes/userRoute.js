@@ -1,31 +1,24 @@
 var express = require("express");
 var router = express.Router();
 const { isAdmin } = require("../middlewares/middlewares.js");
-const {
-  createUser,
-  getUsersAsAdmin,
-  getCurrentUser,
-  updateUser,
-  updateUserAsAdmin,
-  deleteUser,
-} = require("../controllers/userController.js");
+const userController = require("../controllers/userController");
 
 // * GET Users only for ADMIN *
-router.get("/", isAdmin, getUsersAsAdmin);
+router.get("/", isAdmin, userController.getUsersAsAdmin);
 
 /* GET One Current User */
-router.get("/me", getCurrentUser);
+router.get("/me", userController.getCurrentUser);
 
 /* Post User */
-router.post("/", createUser);
+router.post("/", userController.createUser);
 
 /* PUT User */
-router.put("/:userId", updateUser);
+router.put("/:userId", userController.updateUser);
 
 /* PUT User As Admin */
-router.put("/admin/:userId", isAdmin, updateUserAsAdmin);
+router.put("/admin/:userId", isAdmin, userController.updateUserAsAdmin);
 
 /* DELETE User */
-router.delete("/:userId", deleteUser);
+router.delete("/:userId", userController.deleteUser);
 
 module.exports = router;
