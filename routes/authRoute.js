@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const AuthController = require("../controllers/AuthController");
-const { signUpValidationRules, signInValidationRules } = require("../middlewares/authValidationRules");
+const AuthController = require("../controllers/authController");
+const { signUpValidationRules, signInValidationRules } = require("../middlewares/validators/auth");
 const { validationResult } = require("express-validator");
 
 // Route to handle password reset requests

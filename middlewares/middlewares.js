@@ -21,6 +21,7 @@ const verifyJWT = (req, res, next) => {
     res.status(400).json({ auth: false, message: "Invalid token." });
   }
 };
+
 // Middleware function to check if the user has the "admin" role
 const isAdmin = async (req, res, next) => {
   const user = await User.findOne({
@@ -38,6 +39,7 @@ const isAdmin = async (req, res, next) => {
       .json({ error: "Access denied. Only admins can access this route." });
   }
 };
+
 module.exports = {
   isAdmin,
   verifyJWT,
