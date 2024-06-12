@@ -1,4 +1,5 @@
 // Importing required models
+const { validationResult } = require("express-validator");
 const { Reservation, User } = require("../models");
 
 // Defines a class to handle reservation-related requests
@@ -15,9 +16,16 @@ class ReservationController {
   // Method to create a new reservation
   // Requires request body to contain date, note, userId, and numberOfGuests
   async createReservation(req, res) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      // If errors are found, return validation error details
+      return res.status(422).json({ errors: errors.array() });
+    }
+
     try {
       // Extracting data from request body
-      const { date, note, userId, numberOfGuests } = req.body;
+      const { date, note, numberOfGuests } = req.body;
+      const userId = req.user.id;
 
       // Checking for existing reservations on the same date
       const existingReservation = await Reservation.findOne({
@@ -80,6 +88,12 @@ class ReservationController {
 
   // Method to update an existing reservation by ID
   async updateReservation(req, res) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      // If errors are found, return validation error details
+      return res.status(422).json({ errors: errors.array() });
+    }
+
     const id = req.params.id; // Extracting reservation ID from URL parameters
     const { note, numberOfGuests, date } = req.body; // Extracting data from request body
 

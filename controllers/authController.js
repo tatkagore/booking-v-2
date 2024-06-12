@@ -1,5 +1,5 @@
 // Import required modules and models
-const { User } = require("../models");
+const { User, Membership } = require("../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const SECRET_KEY = "secretkey23456";
@@ -34,8 +34,10 @@ class AuthController {
       }
 
       // Hash the password for secure storage
-      const hashedPassword = await bcrypt.hash(password, await bcrypt.genSalt(10));
-
+      const hashedPassword = await bcrypt.hash(
+        password,
+        await bcrypt.genSalt(10)
+      );
       // Create and store the new user in the database
       const newUser = await User.create({
         isAdmin: false,
@@ -46,10 +48,16 @@ class AuthController {
         password: hashedPassword,
       });
 
+      await Membership.create({
+        user_id: newUser.id,
+        meals_purchased: 0,
+        meals_until_free: 10,
+      });
+
       // Generate a JWT for the new user
       const payload = { email: newUser.email, id: newUser.id };
       const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "1h" });
-      
+
       // Respond with the JWT
       res.json({ jwt: token, status: 201 });
     } catch (error) {
@@ -68,7 +76,9 @@ class AuthController {
 
       // Check if user exists and the password is correct
       if (!user || !(await bcrypt.compare(password, user.password))) {
-        return res.status(400).json({ message: "Incorrect username or password" });
+        return res
+          .status(400)
+          .json({ message: "Incorrect username or password" });
       }
 
       // Generate a JWT for the logged-in user
