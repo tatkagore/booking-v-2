@@ -123,7 +123,7 @@ To run development server:
 > - One: Each entry in OrderItems corresponds to one, and only one, plate in the Plates table, specifying which plate was ordered.
 - `Ref: OrderItems.order_id > Orders.id`
 - `Ref: OrderItems.plate_id > Plates.id`
-
+ |                                                |
 
 - ![Database scheme](db.png?raw=true  "Database scheme")
 
