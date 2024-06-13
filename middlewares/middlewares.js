@@ -13,7 +13,6 @@ const verifyJWT = (req, res, next) => {
     // On crée une const decoded contantn l'objet jwt, on applique la méthode verify qui a 2 paramètres : token et clé
     // decoded reçoit un booléen qui confirme si le token est correct ou non
     const decoded = jwt.verify(token, SECRET_KEY);
-    console.log(decoded);
     req.user = decoded; // req.user (l'utilidateur: email et password) est gardé en mémoire pour y accéder ultérieurement
     next(); // Si le token est valide, on passe à la suite
   } catch (err) {

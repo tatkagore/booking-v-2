@@ -49,3 +49,11 @@
 | 🔜 Mise en place d'une pipeline CI/CD   |   🟠    |                                    |
 | 🔜 Automatisation des tests dans la CI  |   🟠    |                                    |
 | 🔜 Configuration du déploiement continu |   🟠    |                                    |
+
+
+| Tâche                                                           | Validée | Lien                                             |
+|-----------------------------------------------------------------|-----------|------------------------------------------------|
+| Création des dossiers et fichiers Routes (User, Room, Spot...)  |    ✅     |                                                |
+| Création des dossiers et fichiers Modèles (User, Room, Spot...) |    ✅     |                                                |
+| Mise en place des contrôleurs (User, Room, Spot...)             |    ✅     |                                                |
+| 🔜 Implémenter les services                                     |    ✅     |                                                |
