@@ -11,6 +11,7 @@ const morganMiddleware = require("./middlewares/morgan.middleware");
 const logger = require("./utils/logger");
 
 const app = express();
+swaggerSetup(app);
 
 // Middlewares
 app.use(morganMiddleware);
