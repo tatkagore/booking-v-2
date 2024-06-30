@@ -11,6 +11,20 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: testdb
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Checkout repository
@@ -24,5 +38,30 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Wait for PostgreSQL to be ready
+        run: |
+          until pg_isready -h localhost -p 5432; do
+            echo "Waiting for postgres container..."
+            sleep 1
+          done
+
+      - name: Set environment variables
+        run: | 
+          echo "DATABASE_URL=postgres://postgres:postgres@localhost:5432/testdb" >> $GITHUB_ENV
+          echo "NODE_ENV=test" >> $GITHUB_ENV
+          echo "TEST_DB_USER=postgres" >>  $GITHUB_ENV
+          echo "TEST_DB_PASSWORD=postgres" >>  $GITHUB_ENV
+          echo "TEST_DB_NAME=testdb" >>  $GITHUB_ENV
+          echo "TEST_DB_HOST=localhost" >>  $GITHUB_ENV
+          
+
+      - name: Run migrations
+        run: npx sequelize-cli db:migrate
+
+#- name: Run seeds
+ #       run: npx sequelize-cli db:seed:all
+
       - name: Run tests
+
+      
         run: npm test

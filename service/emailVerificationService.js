@@ -14,8 +14,9 @@ class EmailVerificationService {
           if (this.isBlacklisted(email)) {
               throw new Error('Le domaine de l\'email est blacklisté');
   
-  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
-      }
-  }
+  // &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+        }
+    }
+}
   
   module.exports = new EmailVerificationService();
